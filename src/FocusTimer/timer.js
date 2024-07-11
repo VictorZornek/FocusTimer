@@ -5,6 +5,8 @@ import { kitchenTimer } from './sounds.js'
 
 
 export function countdown() {
+    clearTimeout(state.countdownId)     // para resolver o acumulo de timeout do countdown
+
     if(!state.isRunning){
         return
     }
@@ -27,8 +29,7 @@ export function countdown() {
 
     updateDisplay(minutes, seconds)
 
-    setTimeout(() => countdown(), 1000)
-
+    state.countdownId = setTimeout(() => countdown(), 1000)   // para resolver o acumulo de timeout do countdown
 }
 
 // function para atualizar os números do display
